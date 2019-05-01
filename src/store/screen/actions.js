@@ -1,5 +1,3 @@
-'use script';
-
 import { SET_SCREEN } from "../action_types";
 
 export function setScreen(component) {

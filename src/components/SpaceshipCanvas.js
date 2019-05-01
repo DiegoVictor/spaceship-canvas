@@ -1,5 +1,3 @@
-'use script';
-
 import React from 'react';
 
 class SpaceshipCanvas extends React.Component {
