@@ -1,6 +1,5 @@
-import { createStore, combineReducers } from "redux";
-import screen from './screen/reducers';
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import thunk from 'redux-thunk'
 
 export default createStore(combineReducers({
-  screen
-}));
+}), applyMiddleware(thunk));
