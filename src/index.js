@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import Store from './store';
-import { setScreen } from './store/screen/actions';
+import { moveBackgroundBy, setBackground } from './store/actions/background';
 
 import SpaceshipCanvas from './components/SpaceshipCanvas';
 import Screen from './containers/Screen';
-import Background from './components/Background';
+import Background from './containers/Background';
 
-SpaceshipCanvas.bg = new Image();
-SpaceshipCanvas.bg.src = 'img/bg.png';
+Store.dispatch(setBackground('img/bg.png'));
+
 
 
 // Insert canvas into HTML body
@@ -30,8 +30,18 @@ ReactDOM.render(
 ReactDOM.render(
   <Provider store={Store}>
     <Screen>
-      <Background loop="infinite" />
+      <Background />
     </Screen>
   </Provider>,
   SpaceshipCanvas.canvas
+);
+
+
+/* Creates game main loop */
+requestAnimationFrame(
+  function frame() {
+    Store.dispatch(moveBackgroundBy(1));
+
+    requestAnimationFrame(frame);
+  }
 );
