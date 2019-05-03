@@ -1,4 +1,4 @@
-import {SET_SCREEN} from '../action_types';
+import { SET_SCREEN } from '../action_types';
 
 const initial_state = {
   current: null

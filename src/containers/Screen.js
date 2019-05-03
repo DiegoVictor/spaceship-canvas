@@ -5,8 +5,7 @@ import Group from '../components/Group';
 class Screen extends React.Component {
   render() {
     return (<Group>
-      {this.props.children}
-      {this.props.screen}
+      {this.props.children}{this.props.screen}
     </Group>)
   }
 }
