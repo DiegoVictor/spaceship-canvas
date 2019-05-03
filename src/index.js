@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import Store from './store';
+import { setScreen } from './store/actions/screen';
 import { moveBackgroundBy, setBackground } from './store/actions/background';
 
 import SpaceshipCanvas from './components/SpaceshipCanvas';
@@ -25,6 +26,11 @@ ReactDOM.render(
   }} />,
   document.getElementById('app')
 );
+
+// Set game's initial screen
+Store.dispatch(setScreen(<Loading>
+  <Progress />
+</Loading>));
 
 
 ReactDOM.render(
