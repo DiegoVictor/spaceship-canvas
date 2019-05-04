@@ -8,7 +8,9 @@ import { moveBackgroundBy, setBackground } from './store/actions/background';
 
 import SpaceshipCanvas from './components/SpaceshipCanvas';
 import Screen from './containers/Screen';
+import Loading from './components/Loading';
 import Background from './containers/Background';
+import Progress from './containers/Progress';
 
 Store.dispatch(setBackground('img/bg.png'));
 
