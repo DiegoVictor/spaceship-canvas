@@ -3,12 +3,11 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import Store from './store';
-import { setScreen } from './store/actions/screen';
+import { setScreen, newFrame } from './store/actions/screen';
 import { moveBackgroundBy, setBackground } from './store/actions/background';
 
 import SpaceshipCanvas from './components/SpaceshipCanvas';
 import Screen from './containers/Screen';
-import Loading from './components/Loading';
 import Background from './containers/Background';
 import Progress from './containers/Progress';
 
@@ -29,27 +28,29 @@ ReactDOM.render(
   document.getElementById('app')
 );
 
-// Set game's initial screen
-Store.dispatch(setScreen(<Loading>
+// Show Loading screen as initial screen
+Store.dispatch(setScreen(<Screen>
+  <Background />
   <Progress />
-</Loading>));
+</Screen>));
 
-
+// Draw the game
 ReactDOM.render(
   <Provider store={Store}>
-    <Screen>
-      <Background />
-    </Screen>
+    {Store.getState().screen.current}
   </Provider>,
   SpaceshipCanvas.canvas
 );
 
 
 /* Creates game main loop */
-requestAnimationFrame(
-  function frame() {
+((frame) => {
+  frame(frame);
+})(frame => {
+  requestAnimationFrame(() => {
     Store.dispatch(moveBackgroundBy(1));
 
-    requestAnimationFrame(frame);
-  }
-);
+    Store.dispatch(newFrame());
+    frame(frame);
+  });
+});

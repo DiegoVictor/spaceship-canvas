@@ -1,32 +1,18 @@
-import React from 'react';
+import SpaceshipCanvas from '../components/SpaceshipCanvas';
 import { connect } from 'react-redux';
-import Group from '../components/Group';
+import React from 'react';
 
-class Screen extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-    /* Recursive arrow function XD */
-    ((frame) => {
-      frame(frame);
-    })(frame => {
-      requestAnimationFrame(() => {
-        this.setState(state => ({
-          timestamp: new Date().getTime()
-        }));
-        frame(frame);
+class Screen extends SpaceshipCanvas {
+  render() {
+    /* Redraw the children components */
+    return React.Children.map(this.props.children, child => {
+      return React.cloneElement(child, {
+        timestamp: this.props.timestamp
       });
     });
-  }
-
-  render() {
-    return (<Group>
-      {this.props.children}{this.props.screen}
-    </Group>)
   }
 }
 
 export default connect(state => ({
-  screen: state.screen.current
+  timestamp: state.screen.timestamp
 }))(Screen);

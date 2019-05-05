@@ -1,7 +1,8 @@
-import { SET_SCREEN } from '../action_types';
+import { SET_SCREEN, NEW_FRAME } from '../action_types';
 
 const initial_state = {
-  current: null
+  current: null,
+  timestamp: 0
 };
 
 export default (state = initial_state, action) => {
@@ -9,6 +10,11 @@ export default (state = initial_state, action) => {
     case SET_SCREEN:
       return Object.assign({}, state, {
         current: action.payload
+      });
+
+    case NEW_FRAME:
+      return Object.assign({}, state, {
+        timestamp: new Date().getTime()
       });
 
     default:
