@@ -13,6 +13,8 @@ import Progress from './containers/Progress';
 
 Store.dispatch(setBackground('img/bg.png'));
 
+SpaceshipCanvas.spritesheet = new Image();
+SpaceshipCanvas.spritesheet.src = 'img/spritesheet.png';
 
 
 // Insert canvas into HTML body
