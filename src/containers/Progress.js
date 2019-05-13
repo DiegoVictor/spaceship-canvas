@@ -2,6 +2,11 @@ import { connect } from 'react-redux';
 import SpaceshipCanvas from '../components/SpaceshipCanvas';
 
 class Progress extends SpaceshipCanvas {
+  constructor(props) {
+    super(props)
+    this.state = { percent: 1 };
+  }
+
   draw(ctx) {
     if (SpaceshipCanvas.spritesheet) {
       /* Draw the fillable progress bar */
@@ -13,15 +18,19 @@ class Progress extends SpaceshipCanvas {
 
       /* Fill the progress bar */
       ctx.drawImage(
-        SpaceshipCanvas.spritesheet, 261, 1, this.props.percent, 20,
-        this.props.x, this.props.y - 8, this.props.percent, 20
+        SpaceshipCanvas.spritesheet, 261, 1, this.state.percent, 20,
+        this.props.x, this.props.y - 8, this.state.percent, 20
       );
     }
+  }
+
+  static getDerivedStateFromProps(props) {
+    return {
+      percent: props.processed * 99 / props.to_process + 1
+    };
   }
 }
 
 export default connect(state => ({
-  percent: 10,
-  x: 120,
-  y: 275
+  processed: state.progress.processed
 }))(Progress);

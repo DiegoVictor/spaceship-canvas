@@ -33,7 +33,7 @@ ReactDOM.render(
 // Show Loading screen as initial screen
 Store.dispatch(setScreen(<Screen>
   <Background />
-  <Progress />
+  <Progress x={120} y={275} to_process={2} />
 </Screen>));
 
 // Draw the game
