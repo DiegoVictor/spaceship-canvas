@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import Store from './store';
 import { setScreen, newFrame } from './store/actions/screen';
 import { moveBackgroundBy, setBackground } from './store/actions/background';
+import { setSpriteSheet } from './store/actions/spaceship-canvas';
 import { advanceProgress } from './store/actions/progress';
 
 import SpaceshipCanvas from './components/SpaceshipCanvas';
@@ -12,7 +13,10 @@ import Screen from './containers/Screen';
 import Background from './containers/Background';
 import Progress from './containers/Progress';
 
+
+// Load resources (background and spritesheet)
 Store.dispatch(setBackground('img/bg.png'));
+Store.dispatch(setSpriteSheet('img/spritesheet.png'));
 
 // Import font
 ReactDOM.render(
