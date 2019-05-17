@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import Store from './store';
 import { setScreen, newFrame } from './store/actions/screen';
 import { moveBackgroundBy, setBackground } from './store/actions/background';
+import { advanceProgress } from './store/actions/progress';
 
 import SpaceshipCanvas from './components/SpaceshipCanvas';
 import Screen from './containers/Screen';
@@ -13,9 +14,13 @@ import Progress from './containers/Progress';
 
 Store.dispatch(setBackground('img/bg.png'));
 
-SpaceshipCanvas.spritesheet = new Image();
-SpaceshipCanvas.spritesheet.src = 'img/spritesheet.png';
-
+// Import font
+ReactDOM.render(
+  <link href="css/bebas-neue.css" onLoad={() => {
+    Store.dispatch(advanceProgress());
+  }} rel="stylesheet" />,
+  document.head
+);
 
 // Insert canvas into HTML body
 ReactDOM.render(
@@ -33,7 +38,8 @@ ReactDOM.render(
 // Show Loading screen as initial screen
 Store.dispatch(setScreen(<Screen>
   <Background />
-  <Progress x={120} y={275} to_process={2} />
+  {/* Set the position and the number of files to be loaded */}
+  <Progress x={120} y={275} process={3} />
 </Screen>));
 
 // Draw the game
