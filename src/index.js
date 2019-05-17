@@ -24,7 +24,7 @@ ReactDOM.render(
 
 // Insert canvas into HTML body
 ReactDOM.render(
-  <canvas height={550} width={320} ref={e => {
+  <canvas height={550} width={350} ref={e => {
     SpaceshipCanvas.canvas = e;
 
     // Retrieve canvas' context and store in the 
