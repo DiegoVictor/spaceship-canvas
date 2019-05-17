@@ -9,6 +9,7 @@ import { setSpriteSheet } from './store/actions/spaceship-canvas';
 import { advanceProgress } from './store/actions/progress';
 
 import SpaceshipCanvas from './components/SpaceshipCanvas';
+import Text from './components/Text';
 import Screen from './containers/Screen';
 import Background from './containers/Background';
 import Progress from './containers/Progress';
@@ -44,6 +45,7 @@ Store.dispatch(setScreen(<Screen>
   <Background />
   {/* Set the position and the number of files to be loaded */}
   <Progress x={120} y={275} process={3} />
+  <Text value="Loading" x={175} y={265} />
 </Screen>));
 
 // Draw the game

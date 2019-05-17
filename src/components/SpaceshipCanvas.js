@@ -7,6 +7,11 @@ class SpaceshipCanvas extends React.Component {
     /* Get context if it is setted */
     if (typeof SpaceshipCanvas.ctx !== 'undefined') {
       ctx = SpaceshipCanvas.ctx;
+
+      ctx.textBaseline = 'alphabetic';
+      ctx.fillStyle = 'white';
+      ctx.font = '30px Bebas Neue';
+      ctx.textAlign = 'center';
     }
 
     /* Call draw only whether it is setted */
