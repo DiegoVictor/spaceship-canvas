@@ -9,6 +9,7 @@ import { setSpriteSheet } from './store/actions/spaceship-canvas';
 import { advanceProgress } from './store/actions/progress';
 
 import SpaceshipCanvas from './components/SpaceshipCanvas';
+import Group from './containers/Group';
 import Text from './components/Text';
 import Screen from './containers/Screen';
 import Background from './containers/Background';
@@ -40,22 +41,28 @@ ReactDOM.render(
   document.getElementById('app')
 );
 
-// Show Loading screen as initial screen
-Store.dispatch(setScreen(<Screen>
-  <Background />
-  {/* Set the position and the number of files to be loaded */}
-  <Progress x={120} y={275} process={3} />
-  <Text value="Loading" x={175} y={265} />
-</Screen>));
-
 // Draw the game
 ReactDOM.render(
-  <Provider store={Store}>
-    {Store.getState().screen.current}
-  </Provider>,
+  <Provider store={Store}><Screen /></Provider>,
   SpaceshipCanvas.canvas
 );
 
+// Show Loading screen as initial screen
+Store.dispatch(setScreen(<Group>
+  <Background />
+  {/* Set the position and the number of files to be loaded */}
+  <Progress x={120} y={275} process={3} oncomplete={() => {
+
+    // All files were loaded, so go to the next screen
+    setTimeout(() => {
+      Store.dispatch(setScreen(<Group>
+        <Background />
+        </Group>
+      ));
+    }, 1000);
+  }}/>
+  <Text value="Loading" x={175} y={265} />
+</Group>));
 
 /* Creates game main loop */
 ((frame) => {
@@ -64,6 +71,7 @@ ReactDOM.render(
   requestAnimationFrame(() => {
     Store.dispatch(moveBackgroundBy(1));
 
+    // Make the other components redraw
     Store.dispatch(newFrame());
     frame(frame);
   });
