@@ -57,8 +57,8 @@ Store.dispatch(setScreen(<Group>
     setTimeout(() => {
       Store.dispatch(setScreen(<Group>
         <Background />
-        </Group>
-      ));
+        <Lifebar x={8} y={10} />
+      </Group>));
     }, 1000);
   }}/>
   <Text value="Loading" x={175} y={265} />
