@@ -14,6 +14,9 @@ import Text from './components/Text';
 import Screen from './containers/Screen';
 import Background from './containers/Background';
 import Progress from './containers/Progress';
+import Lifebar from './containers/Lifebar';
+import Score from './containers/Score';
+import Multiplier from './containers/Multiplier';
 
 
 // Load resources (background and spritesheet)
@@ -57,7 +60,10 @@ Store.dispatch(setScreen(<Group>
     setTimeout(() => {
       Store.dispatch(setScreen(<Group>
         <Background />
+        {/* Player's hud */}
         <Lifebar x={8} y={10} />
+        <Score x={342} y={10} />
+        <Multiplier x={342} y={526} />
       </Group>));
     }, 1000);
   }}/>
