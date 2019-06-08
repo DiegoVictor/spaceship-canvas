@@ -18,4 +18,4 @@ export function setSpriteSheet(path) {
 
     img.src = path;
   }
-}
+};
