@@ -7,3 +7,7 @@ export const SET_BACKGROUND = 'SET_BACKGROUND';
 export const ADVANCE_PROGRESS = 'ADVANCE_PROGRESS';
 
 export const SET_SPRITESHEET = 'SET_SPRITESHEET';
+
+export const TOGGLE_KEY = 'TOGGLE_KEY';
+
+export const MOVE_SPACESHIP = 'MOVE_SPACESHIP';

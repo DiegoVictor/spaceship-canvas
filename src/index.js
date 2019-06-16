@@ -7,6 +7,8 @@ import { setScreen, newFrame } from './store/actions/screen';
 import { moveBackgroundBy, setBackground } from './store/actions/background';
 import { setSpriteSheet } from './store/actions/spaceship-canvas';
 import { advanceProgress } from './store/actions/progress';
+import { toggleKey } from './store/actions/keyboard';
+import { moveSpaceship } from './store/actions/spaceship';
 
 import SpaceshipCanvas from './components/SpaceshipCanvas';
 import Group from './containers/Group';
@@ -73,12 +75,31 @@ Store.dispatch(setScreen(<Group>
   <Text value="Loading" x={175} y={265} />
 </Group>));
 
+['keydown', 'keyup'].forEach(event_name => {
+  document.addEventListener(event_name, event => {
+    let key = event.key.replace('Arrow', '');
+
+    if (!Store.getState().keyboard[key]
+    || event_name === 'keyup') {
+      Store.dispatch(toggleKey(key));
+    }
+  });
+});
+
 /* Creates game main loop */
 ((frame) => {
   frame(frame);
 })(frame => {
   requestAnimationFrame(() => {
     Store.dispatch(moveBackgroundBy(1));
+
+    /* Move the spaceship */
+    for (let key in Store.getState().keyboard) {
+      if (Store.getState().keyboard[key]
+      && ['Left', 'Up', 'Right', 'Down'].indexOf(key) > -1) {
+        Store.dispatch(moveSpaceship(key));
+      }
+    }
 
     // Make the other components redraw
     Store.dispatch(newFrame());
