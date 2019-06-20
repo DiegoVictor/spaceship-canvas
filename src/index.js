@@ -8,7 +8,7 @@ import { moveBackgroundBy, setBackground } from './store/actions/background';
 import { setSpriteSheet } from './store/actions/spaceship-canvas';
 import { advanceProgress } from './store/actions/progress';
 import { toggleKey } from './store/actions/keyboard';
-import { moveSpaceship } from './store/actions/spaceship';
+import { moveSpaceship, toggleMovementSpeed } from './store/actions/spaceship';
 
 import SpaceshipCanvas from './components/SpaceshipCanvas';
 import Group from './containers/Group';
@@ -81,6 +81,11 @@ Store.dispatch(setScreen(<Group>
 
     if (!Store.getState().keyboard[key]
     || event_name === 'keyup') {
+      switch (key) {
+        case 'Shift':
+          Store.dispatch(toggleMovementSpeed());
+          break;
+      }
       Store.dispatch(toggleKey(key));
     }
   });

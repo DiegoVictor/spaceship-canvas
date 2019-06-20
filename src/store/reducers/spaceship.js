@@ -1,4 +1,4 @@
-import { MOVE_SPACESHIP } from '../action_types';
+import { MOVE_SPACESHIP, TOGGLE_MOVEMENT_SPEED } from '../action_types';
 
 const initial_state = {
   x: 175,
@@ -27,10 +27,13 @@ export default (state = initial_state, action) => {
           return Object.assign({}, state, {
             x: state.x + step
           });
-
-        default:
-          return state
       }
+      return state;
+
+    case TOGGLE_MOVEMENT_SPEED:
+      return Object.assign({}, state, {
+        step: state.step > 1 ? 1 : 3
+      });
 
     default:
       return state;
