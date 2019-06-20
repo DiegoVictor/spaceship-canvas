@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
+import { HEIGHT, WIDTH } from './globals';
+
 import Store from './store';
 import { setScreen, newFrame } from './store/actions/screen';
 import { moveBackgroundBy, setBackground } from './store/actions/background';
@@ -36,7 +38,7 @@ ReactDOM.render(
 
 // Insert canvas into HTML body
 ReactDOM.render(
-  <canvas height={550} width={350} ref={e => {
+  <canvas height={HEIGHT} width={WIDTH} ref={e => {
     SpaceshipCanvas.canvas = e;
 
     // Retrieve canvas' context and store in the 
@@ -61,6 +63,8 @@ Store.dispatch(setScreen(<Group>
 
     // All files were loaded, so go to the next screen
     setTimeout(() => {
+      let spaceship = Store.getState().spaceship;
+
       Store.dispatch(setScreen(<Group>
         <Background />
         {/* Player's hud */}
@@ -68,7 +72,7 @@ Store.dispatch(setScreen(<Group>
         <Score x={342} y={10} />
         <Multiplier x={342} y={526} />
 
-        <Spaceship height={15} width={22} />
+        <Spaceship height={spaceship.height} width={spaceship.width} />
       </Group>));
     }, 1000);
   }}/>
@@ -85,8 +89,10 @@ Store.dispatch(setScreen(<Group>
         case 'Shift':
           Store.dispatch(toggleMovementSpeed());
           break;
+
+        default:
+          Store.dispatch(toggleKey(key));
       }
-      Store.dispatch(toggleKey(key));
     }
   });
 });
