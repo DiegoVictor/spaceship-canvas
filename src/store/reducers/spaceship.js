@@ -1,12 +1,10 @@
 import { MOVE_SPACESHIP, TOGGLE_MOVEMENT_SPEED } from '../action_types';
-import { HEIGHT, WIDTH } from '../../globals';
+import { HEIGHT, WIDTH, SPACESHIP_HEIGHT } from '../../globals';
 
 const initial_state = {
   x: 175,
   y: 512,
-  step: 3,
-  height: 15,
-  width: 22
+  step: 3
 };
 
 export default (state = initial_state, action) => {
@@ -24,8 +22,8 @@ export default (state = initial_state, action) => {
 
         case 'Down':
           new_state.y = state.y + state.step;
-          if (new_state.y > HEIGHT - state.height) {
-            new_state.y = HEIGHT - state.height;
+          if (new_state.y > HEIGHT - SPACESHIP_HEIGHT) {
+            new_state.y = HEIGHT - SPACESHIP_HEIGHT;
           }
           break;
         

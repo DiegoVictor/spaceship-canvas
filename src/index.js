@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { HEIGHT, WIDTH } from './globals';
+import { HEIGHT, WIDTH, SPACESHIP_HEIGHT, SPACESHIP_WIDTH } from './globals';
 
 import Store from './store';
 import { setScreen, newFrame } from './store/actions/screen';
@@ -63,8 +63,6 @@ Store.dispatch(setScreen(<Group>
 
     // All files were loaded, so go to the next screen
     setTimeout(() => {
-      let spaceship = Store.getState().spaceship;
-
       Store.dispatch(setScreen(<Group>
         <Background />
         {/* Player's hud */}
@@ -72,7 +70,7 @@ Store.dispatch(setScreen(<Group>
         <Score x={342} y={10} />
         <Multiplier x={342} y={526} />
 
-        <Spaceship height={spaceship.height} width={spaceship.width} />
+        <Spaceship height={SPACESHIP_HEIGHT} width={SPACESHIP_WIDTH} />
       </Group>));
     }, 1000);
   }}/>
