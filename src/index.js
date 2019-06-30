@@ -59,7 +59,7 @@ ReactDOM.render(
 Store.dispatch(setScreen(<Group>
   <Background />
   {/* Set the position and the number of files to be loaded */}
-  <Progress x={120} y={275} process={3} oncomplete={() => {
+  <Progress x={WIDTH / 2 - 55} y={HEIGHT / 2} process={3} oncomplete={() => {
 
     // All files were loaded, so go to the next screen
     setTimeout(() => {
@@ -67,14 +67,14 @@ Store.dispatch(setScreen(<Group>
         <Background />
         {/* Player's hud */}
         <Lifebar x={8} y={10} />
-        <Score x={342} y={10} />
-        <Multiplier x={342} y={526} />
+        <Score x={WIDTH - 8} y={10} />
+        <Multiplier x={WIDTH - 8} y={HEIGHT - 24} />
 
         <Spaceship height={SPACESHIP_HEIGHT} width={SPACESHIP_WIDTH} />
       </Group>));
     }, 1000);
   }}/>
-  <Text value="Loading" x={175} y={265} />
+  <Text value="Loading" x={WIDTH / 2} y={HEIGHT / 2 - 10} />
 </Group>));
 
 ['keydown', 'keyup'].forEach(event_name => {
