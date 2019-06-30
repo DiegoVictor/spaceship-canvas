@@ -6,4 +6,4 @@ export function moveSpaceship(key) {
 
 export function toggleMovementSpeed() {
   return { type: TOGGLE_MOVEMENT_SPEED };
-}
+};

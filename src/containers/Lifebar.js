@@ -9,9 +9,9 @@ class Lifebar extends SpaceshipCanvas {
 	draw() {
 		return (
 			<Group>{Array.from(Array(this.props.credits).keys())
-				.map((index) => {
+				.map(index => {
 					return (
-						<Life x={this.props.x + (index * 12)} y={this.props.y} key={index} />
+						<Life x={this.props.x + index * 12} y={this.props.y} key={index} />
 					);
 				}
 			)}</Group>
