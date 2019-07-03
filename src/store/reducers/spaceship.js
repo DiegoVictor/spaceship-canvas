@@ -1,10 +1,16 @@
-import { MOVE_SPACESHIP, TOGGLE_MOVEMENT_SPEED } from '../action_types';
+import { MOVE_SPACESHIP, TOGGLE_MOVEMENT_SPEED, RELOAD_SPACESHIP_LASER } from '../action_types';
 import { HEIGHT, WIDTH, SPACESHIP_HEIGHT } from '../../globals';
 
 const initial_state = {
   x: 175,
   y: 512,
-  step: 3
+  step: 3,
+
+  /* Cycles between every spaceship's shoot */
+  cadence: {
+    remmaning: 0,
+    value: 10
+  }
 };
 
 export default (state = initial_state, action) => {
@@ -50,6 +56,25 @@ export default (state = initial_state, action) => {
     case TOGGLE_MOVEMENT_SPEED:
       return Object.assign({}, state, {
         step: state.step > 1 ? 1 : 3
+      });
+
+    case RELOAD_SPACESHIP_LASER:
+      if (state.cadence.remmaning > 0) {
+        return Object.assign({}, state, {
+          ...state,
+          cadence: {
+            ...state.cadence,
+            remmaning: state.cadence.remmaning - 1
+          }
+        });
+      }
+
+      return Object.assign({}, state, {
+        ...state,
+        cadence: {
+          ...state.cadence,
+          remmaning: state.cadence.value
+        }
       });
 
     default:

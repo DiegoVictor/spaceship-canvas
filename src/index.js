@@ -10,11 +10,14 @@ import { moveBackgroundBy, setBackground } from './store/actions/background';
 import { setSpriteSheet } from './store/actions/spaceship-canvas';
 import { advanceProgress } from './store/actions/progress';
 import { toggleKey } from './store/actions/keyboard';
-import { moveSpaceship, toggleMovementSpeed } from './store/actions/spaceship';
+import { moveSpaceship, toggleMovementSpeed, reloadSpaceshipLaser } from './store/actions/spaceship';
+import { shoot, moveShoots } from './store/actions/shoot';
 
 import SpaceshipCanvas from './components/SpaceshipCanvas';
-import Group from './containers/Group';
 import Text from './components/Text';
+import Function from './components/Function';
+import Shoot from './components/Shoot';
+import Group from './containers/Group';
 import Screen from './containers/Screen';
 import Background from './containers/Background';
 import Progress from './containers/Progress';
@@ -71,6 +74,16 @@ Store.dispatch(setScreen(<Group>
         <Multiplier x={WIDTH - 8} y={HEIGHT - 24} />
 
         <Spaceship height={SPACESHIP_HEIGHT} width={SPACESHIP_WIDTH} />
+
+        {/* Draw all shoots (player and enemies) */}
+        <Function>
+          {
+            () => Object.assign(
+              [], Store.getState().shoot.shoots
+            )
+            .map((shoot, i) => <Shoot key={i} {...shoot} />)
+          }
+        </Function>
       </Group>));
     }, 1000);
   }}/>
@@ -88,6 +101,7 @@ Store.dispatch(setScreen(<Group>
           Store.dispatch(toggleMovementSpeed());
           break;
 
+        case 'z':
         default:
           Store.dispatch(toggleKey(key));
       }
@@ -102,13 +116,39 @@ Store.dispatch(setScreen(<Group>
   requestAnimationFrame(() => {
     Store.dispatch(moveBackgroundBy(1));
 
+    /**
+     * Doing things that depends of the keys 
+     * are being pressed
+     **/
+    (state => {
+      Object.keys(state.keyboard).forEach(key => {
+        let directional = ['Left', 'Up', 'Right', 'Down'].indexOf(key);
+
     /* Move the spaceship */
-    for (let key in Store.getState().keyboard) {
-      if (Store.getState().keyboard[key]
-      && ['Left', 'Up', 'Right', 'Down'].indexOf(key) > -1) {
+        if (state.keyboard[key] && directional > -1) {
         Store.dispatch(moveSpaceship(key));
       }
+      });
+
+      /**
+       * Create new shoots when 'z' key is pressed and the
+       * spaceship's laser is loaded
+       **/
+      if (state.keyboard.z
+      && state.spaceship.cadence.remmaning === 0) {
+        Store.dispatch(shoot({
+          height: 13,
+          step: 6,
+          x: state.spaceship.x,
+          y: state.spaceship.y,
+          width: 4
+        }));
     }
+    })(Store.getState());
+
+    /* Update shoots' positions */
+    Store.dispatch(moveShoots()); 
+    Store.dispatch(reloadSpaceshipLaser());
 
     // Make the other components redraw
     Store.dispatch(newFrame());

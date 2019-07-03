@@ -3,6 +3,7 @@ export const NEW_FRAME = 'NEW_FRAME';
 
 export const MOVE_BACKGROUND = 'MOVE_BACKGROUND';
 export const SET_BACKGROUND = 'SET_BACKGROUND';
+export const RELOAD_SPACESHIP_LASER = 'RELOAD_SPACESHIP_LASER';
 
 export const ADVANCE_PROGRESS = 'ADVANCE_PROGRESS';
 
@@ -12,3 +13,6 @@ export const TOGGLE_KEY = 'TOGGLE_KEY';
 
 export const MOVE_SPACESHIP = 'MOVE_SPACESHIP';
 export const TOGGLE_MOVEMENT_SPEED = 'TOGGLE_MOVEMENT_SPEED';
+
+export const SHOOT = 'SHOOT';
+export const MOVE_SHOOTS = 'MOVE_SHOOTS';

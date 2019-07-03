@@ -7,7 +7,8 @@ import player from './reducers/player';
 import spaceship from './reducers/spaceship';
 import spaceship_canvas from './reducers/spaceship-canvas';
 import keyboard from './reducers/keyboard';
+import shoot from './reducers/shoot';
 
 export default createStore(combineReducers({
-  screen, background, progress, spaceship_canvas, player, spaceship, keyboard
+  screen, background, progress, spaceship_canvas, player, spaceship, keyboard, shoot
 }), applyMiddleware(thunk));
