@@ -17,7 +17,10 @@ export default (state = initial_state, action) => {
   switch(action.type) {
     case MOVE_SPACESHIP:
       let new_state = {};
-      // Move spaceship and prevent it to move to outside of the screen
+      /**
+       * Move spaceship and prevent it to move to
+       * outside of the screen
+       **/
       switch(action.payload) {
         case 'Up':
           new_state.y = state.y - state.step;
@@ -57,7 +60,7 @@ export default (state = initial_state, action) => {
       return Object.assign({}, state, {
         step: state.step > 1 ? 1 : 3
       });
-
+    
     case RELOAD_SPACESHIP_LASER:
       if (state.cadence.remmaning > 0) {
         return Object.assign({}, state, {

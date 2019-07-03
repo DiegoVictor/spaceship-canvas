@@ -27,11 +27,11 @@ import Spaceship from './containers/Spaceship';
 import Multiplier from './containers/Multiplier';
 
 
-// Load resources (background and spritesheet)
+/* Load resources (background and spritesheet) */
 Store.dispatch(setBackground('img/bg.png'));
 Store.dispatch(setSpriteSheet('img/spritesheet.png'));
 
-// Import font
+/* Import font */
 ReactDOM.render(
   <link href="css/bebas-neue.css" onLoad={() => {
     Store.dispatch(advanceProgress());
@@ -39,39 +39,43 @@ ReactDOM.render(
   document.head
 );
 
-// Insert canvas into HTML body
+/* Insert canvas into HTML body */
 ReactDOM.render(
   <canvas height={HEIGHT} width={WIDTH} ref={e => {
     SpaceshipCanvas.canvas = e;
 
-    // Retrieve canvas' context and store in the 
-    // SpaceshipCanvas class making the context available 
-    // to all its children components
+    /**
+     * Retrieve canvas' context and store in the 
+     * SpaceshipCanvas class making the context available 
+     * to all its children components
+     **/
     SpaceshipCanvas.ctx = e.getContext('2d');
   }} />,
   document.getElementById('app')
 );
 
-// Draw the game
+/* Draw the game */
 ReactDOM.render(
   <Provider store={Store}><Screen /></Provider>,
   SpaceshipCanvas.canvas
 );
 
-// Show Loading screen as initial screen
+/* Show Loading screen as initial screen */
 Store.dispatch(setScreen(<Group>
   <Background />
   {/* Set the position and the number of files to be loaded */}
-  <Progress x={WIDTH / 2 - 55} y={HEIGHT / 2} process={3} oncomplete={() => {
+  <Progress x={WIDTH / 2 - 55} y={HEIGHT / 2} process={3}
+  oncomplete={() => {
 
-    // All files were loaded, so go to the next screen
+    /* All files were loaded, so go to the next screen */
     setTimeout(() => {
       Store.dispatch(setScreen(<Group>
         <Background />
+
         {/* Player's hud */}
         <Lifebar x={8} y={10} />
-        <Score x={WIDTH - 8} y={10} />
         <Multiplier x={WIDTH - 8} y={HEIGHT - 24} />
+        <Score x={WIDTH - 8} y={10} />
 
         <Spaceship height={SPACESHIP_HEIGHT} width={SPACESHIP_WIDTH} />
 
@@ -86,7 +90,7 @@ Store.dispatch(setScreen(<Group>
         </Function>
       </Group>));
     }, 1000);
-  }}/>
+  }} />
   <Text value="Loading" x={WIDTH / 2} y={HEIGHT / 2 - 10} />
 </Group>));
 
@@ -124,10 +128,10 @@ Store.dispatch(setScreen(<Group>
       Object.keys(state.keyboard).forEach(key => {
         let directional = ['Left', 'Up', 'Right', 'Down'].indexOf(key);
 
-    /* Move the spaceship */
+        /* Move the spaceship */
         if (state.keyboard[key] && directional > -1) {
-        Store.dispatch(moveSpaceship(key));
-      }
+          Store.dispatch(moveSpaceship(key));
+        }
       });
 
       /**
@@ -143,14 +147,14 @@ Store.dispatch(setScreen(<Group>
           y: state.spaceship.y,
           width: 4
         }));
-    }
+      }
     })(Store.getState());
 
     /* Update shoots' positions */
     Store.dispatch(moveShoots()); 
     Store.dispatch(reloadSpaceshipLaser());
 
-    // Make the other components redraw
+    /* Make the other components redraw */
     Store.dispatch(newFrame());
     frame(frame);
   });
