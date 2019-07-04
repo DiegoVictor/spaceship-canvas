@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { HEIGHT, WIDTH, SPACESHIP_HEIGHT, SPACESHIP_WIDTH } from './globals';
+import { HEIGHT, WIDTH } from './globals';
 
 import Store from './store';
 import { setScreen, newFrame } from './store/actions/screen';
@@ -77,7 +77,7 @@ Store.dispatch(setScreen(<Group>
         <Multiplier x={WIDTH - 8} y={HEIGHT - 24} />
         <Score x={WIDTH - 8} y={10} />
 
-        <Spaceship height={SPACESHIP_HEIGHT} width={SPACESHIP_WIDTH} />
+        <Spaceship />
 
         {/* Draw all shoots (player and enemies) */}
         <Function>

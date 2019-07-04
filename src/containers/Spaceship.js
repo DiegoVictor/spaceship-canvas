@@ -13,6 +13,8 @@ class Spaceship extends SpaceshipCanvas {
 }
 
 export default connect(state => ({
+  height: state.spaceship.height,
+  width: state.spaceship.width,
   x: state.spaceship.x,
   y: state.spaceship.y
 }))(Spaceship);
