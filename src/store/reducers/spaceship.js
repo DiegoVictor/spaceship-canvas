@@ -1,4 +1,4 @@
-import { MOVE_SPACESHIP, TOGGLE_MOVEMENT_SPEED, RELOAD_SPACESHIP_LASER } from '../action_types';
+import { MOVE_SPACESHIP, TOGGLE_MOVEMENT_SPEED, RELOAD_SPACESHIP_LASER, START_RELOAD_SPACESHIP_LASER } from '../action_types';
 import { HEIGHT, WIDTH } from '../../globals';
 
 const initial_state = {
@@ -74,7 +74,9 @@ export default (state = initial_state, action) => {
           }
         });
       }
-
+      return state;
+    
+    case START_RELOAD_SPACESHIP_LASER:
       return Object.assign({}, state, {
         ...state,
         cadence: {

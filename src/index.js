@@ -11,12 +11,11 @@ import { setSpriteSheet } from './store/actions/spaceship-canvas';
 import { advanceProgress } from './store/actions/progress';
 import { toggleKey } from './store/actions/keyboard';
 import { moveSpaceship, toggleMovementSpeed, reloadSpaceshipLaser } from './store/actions/spaceship';
-import { shoot, moveShoots } from './store/actions/shoot';
+import { shoot, moveShoots } from './store/actions/shoots';
 
 import SpaceshipCanvas from './components/SpaceshipCanvas';
 import Text from './components/Text';
-import Function from './components/Function';
-import Shoot from './components/Shoot';
+import Shoots from './containers/Shoots';
 import Group from './containers/Group';
 import Screen from './containers/Screen';
 import Background from './containers/Background';
@@ -79,15 +78,8 @@ Store.dispatch(setScreen(<Group>
 
         <Spaceship />
 
-        {/* Draw all shoots (player and enemies) */}
-        <Function>
-          {
-            () => Object.assign(
-              [], Store.getState().shoot.shoots
-            )
-            .map((shoot, i) => <Shoot key={i} {...shoot} />)
-          }
-        </Function>
+        {/* Draw player and enemies' shoots */}
+        <Shoots />
       </Group>));
     }, 1000);
   }} />
