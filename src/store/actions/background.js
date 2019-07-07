@@ -11,8 +11,7 @@ export function setBackground(path) {
 
     img.onload = () => {
       dispatch({ type: ADVANCE_PROGRESS });
-
-      return dispatch({
+      dispatch({
         type: SET_BACKGROUND,
         payload: img 
       });

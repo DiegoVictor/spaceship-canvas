@@ -10,7 +10,7 @@ export function setSpriteSheet(path) {
 
       // TODO Try use state to set the spritesheet on SpaceshipCanvas component
       SpaceshipCanvas.spritesheet = img;
-      return dispatch({
+      dispatch({
         type: SET_SPRITESHEET,
         payload: img
       });
