@@ -13,6 +13,7 @@ export default (state = initial_state, action) => {
       });
 
     case NEW_FRAME:
+      // TODO change from timestamp to another thing or even remove this action
       return Object.assign({}, state, {
         timestamp: new Date().getTime()
       });
