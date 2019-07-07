@@ -43,5 +43,5 @@ class Progress extends SpaceshipCanvas {
 }
 
 export default connect(state => ({
-  processed: state.progress.processed
+  processed: state.progress
 }))(Progress);
