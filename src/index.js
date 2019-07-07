@@ -12,10 +12,13 @@ import { advanceProgress } from './store/actions/progress';
 import { toggleKey } from './store/actions/keyboard';
 import { moveSpaceship, toggleMovementSpeed, reloadSpaceshipLaser } from './store/actions/spaceship';
 import { shoot, moveShoots } from './store/actions/shoots';
+import { createMeteor } from './store/actions/meteor';
+import { moveEnemies } from './store/actions/enemies';
 
 import SpaceshipCanvas from './components/SpaceshipCanvas';
 import Text from './components/Text';
 import Shoots from './containers/Shoots';
+import Enemies from './containers/Enemies';
 import Group from './containers/Group';
 import Screen from './containers/Screen';
 import Background from './containers/Background';
@@ -80,6 +83,9 @@ Store.dispatch(setScreen(<Group>
 
         {/* Draw player and enemies' shoots */}
         <Shoots />
+
+        {/* Draw enemies */}
+        <Enemies />
       </Group>));
     }, 1000);
   }} />
@@ -145,6 +151,10 @@ Store.dispatch(setScreen(<Group>
     /* Update shoots' positions */
     Store.dispatch(moveShoots()); 
     Store.dispatch(reloadSpaceshipLaser());
+
+    /* Create meteors */
+    Store.dispatch(createMeteor(Math.random() * 5 + 1));
+    Store.dispatch(moveEnemies());
 
     /* Make the other components redraw */
     Store.dispatch(newFrame());

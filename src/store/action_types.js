@@ -17,3 +17,6 @@ export const TOGGLE_MOVEMENT_SPEED = 'TOGGLE_MOVEMENT_SPEED';
 
 export const SHOOT = 'SHOOT';
 export const MOVE_SHOOTS = 'MOVE_SHOOTS';
+
+export const CREATE_METEOR = 'CREATE_METEOR';
+export const MOVE_ENEMIES = 'MOVE_ENEMIES';
