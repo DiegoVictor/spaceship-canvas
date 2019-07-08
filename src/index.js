@@ -16,17 +16,11 @@ import { createMeteor } from './store/actions/meteor';
 import { moveEnemies } from './store/actions/enemies';
 
 import SpaceshipCanvas from './components/SpaceshipCanvas';
-import Text from './components/Text';
-import Shoots from './containers/Shoots';
-import Enemies from './containers/Enemies';
-import Group from './containers/Group';
 import Screen from './containers/Screen';
-import Background from './containers/Background';
-import Progress from './containers/Progress';
-import Lifebar from './containers/Lifebar';
-import Score from './containers/Score';
-import Spaceship from './containers/Spaceship';
-import Multiplier from './containers/Multiplier';
+
+import Loading from './screens/Loading';
+import Game from './screens/Game';
+
 
 
 /* Load resources (background and spritesheet) */
@@ -63,34 +57,12 @@ ReactDOM.render(
 );
 
 /* Show Loading screen as initial screen */
-Store.dispatch(setScreen(<Group>
-  <Background />
-  {/* Set the position and the number of files to be loaded */}
-  <Progress x={WIDTH / 2 - 55} y={HEIGHT / 2} process={3}
-  oncomplete={() => {
-
+Store.dispatch(setScreen(<Loading oncomplete={() => {
     /* All files were loaded, so go to the next screen */
     setTimeout(() => {
-      Store.dispatch(setScreen(<Group>
-        <Background />
-
-        {/* Player's hud */}
-        <Lifebar x={8} y={10} />
-        <Multiplier x={WIDTH - 8} y={HEIGHT - 24} />
-        <Score x={WIDTH - 8} y={10} />
-
-        <Spaceship />
-
-        {/* Draw player and enemies' shoots */}
-        <Shoots />
-
-        {/* Draw enemies */}
-        <Enemies />
-      </Group>));
+    Store.dispatch(setScreen(<Game />));
     }, 1000);
-  }} />
-  <Text value="Loading" x={WIDTH / 2} y={HEIGHT / 2 - 10} />
-</Group>));
+}}/>));
 
 ['keydown', 'keyup'].forEach(event_name => {
   document.addEventListener(event_name, event => {
