@@ -7,7 +7,7 @@ const initial_state = {
   step: 3,
 
   height: 15,
-  width: 22,
+  width: 24,
 
   /* Cycles between every spaceship's shoot */
   cadence: {
