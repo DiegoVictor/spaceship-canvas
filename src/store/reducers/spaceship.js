@@ -85,6 +85,12 @@ export default (state = initial_state, action) => {
         }
       });
 
+    case RESET_SPACESHIP:
+      return Object.assign({}, state, {
+        x: 175,
+        y: 512
+      });
+
     default:
       return state;
   }

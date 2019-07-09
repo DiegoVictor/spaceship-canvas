@@ -1,4 +1,4 @@
-import { SHOOT, MOVE_SHOOTS } from '../action_types';
+import { SHOOT, MOVE_SHOOTS, REMOVE_ALL_SHOOTS } from '../action_types';
 
 const initial_state = [];
 
@@ -21,6 +21,9 @@ export default (state = initial_state, action) => {
         }
       }
       return shoots;
+
+    case REMOVE_ALL_SHOOTS:
+      return [];
 
     default:
       return state;
