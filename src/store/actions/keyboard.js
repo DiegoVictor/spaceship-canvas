@@ -1,5 +1,5 @@
 import { TOGGLE_KEY } from "../action_types";
 
-export function toggleKey(key) {
-  return { type: TOGGLE_KEY, payload: key };
+export function toggleKey(key, value) {
+  return { type: TOGGLE_KEY, payload: {[key]: value} };
 };

@@ -61,7 +61,7 @@ export default (state = initial_state, action) => {
 
     case TOGGLE_MOVEMENT_SPEED:
       return Object.assign({}, state, {
-        step: state.step > 1 ? 1 : 3
+        step: action.payload ? 1 : 3
       });
     
     case RELOAD_SPACESHIP_LASER:

@@ -7,8 +7,8 @@ export function moveSpaceship(key) {
   return { type: MOVE_SPACESHIP, payload: key };
 };
 
-export function toggleMovementSpeed() {
-  return { type: TOGGLE_MOVEMENT_SPEED };
+export function toggleMovementSpeed(value) {
+  return { type: TOGGLE_MOVEMENT_SPEED, payload: value };
 };
 
 export function reloadSpaceshipLaser() {
