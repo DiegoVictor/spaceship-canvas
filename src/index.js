@@ -21,6 +21,7 @@ import Screen from './containers/Screen';
 import Loading from './screens/Loading';
 import Game from './screens/Game';
 
+import CollisorAnalyzer from './libs/CollisorAnalyzer';
 
 
 /* Load resources (background and spritesheet) */
@@ -118,7 +119,19 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
           width: 4
         }));
       }
-    })(Store.getState());
+
+    /* Check collisions */
+    state.enemies.every(enemy => {
+      if (CollisorAnalyzer.spaceship(state.spaceship, enemy)) {
+        if (Store.getState().player.credits > 1) {
+        return false;
+        }
+
+        return false;
+      }
+      return true;
+    });
+
 
     /* Update shoots' positions */
     Store.dispatch(moveShoots()); 
