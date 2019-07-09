@@ -17,10 +17,13 @@ import { moveEnemies } from './store/actions/enemies';
 import SpaceshipCanvas from './components/SpaceshipCanvas';
 import Screen from './containers/Screen';
 
+import Loading from './containers/screens/Loading';
+import Game from './containers/screens/Game';
 import Continue from './containers/screens/Continue';
 import GameOver from './containers/screens/GameOver';
 
 import CollisorAnalyzer from './libs/CollisorAnalyzer';
+
 
 
 /* Load resources (background and spritesheet) */
@@ -58,10 +61,10 @@ ReactDOM.render(
 
 /* Show Loading screen as initial screen */
 Store.dispatch(setScreen(<Loading oncomplete={() => {
-    /* All files were loaded, so go to the next screen */
-    setTimeout(() => {
+  /* All files were loaded, so go to the next screen */
+  setTimeout(() => {
     Store.dispatch(setScreen(<Game />));
-    }, 1000);
+  }, 1000);
 }}/>));
 
 /* Creates game main loop */
@@ -69,43 +72,41 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
   frame(frame, Store.getState());
 })((frame, state) => {
   requestAnimationFrame(() => {
-    Store.dispatch(moveBackgroundBy(1));
+    Store.dispatch(moveBackgroundBy(1)); 
 
     /**
      * Doing things that depends of the keys 
      * are being pressed
      **/
-    (state => {
-      Object.keys(state.keyboard).forEach(key => {
-        let directional = ['Left', 'Up', 'Right', 'Down'].indexOf(key);
-
-        /* Move the spaceship */
-        if (state.keyboard[key] && directional > -1) {
-          Store.dispatch(moveSpaceship(key));
-        }
-      });
-
-      /**
-       * Create new shoots when 'z' key is pressed and the
-       * spaceship's laser is loaded
-       **/
-      if (state.keyboard.z
-      && state.spaceship.cadence.remmaning === 0) {
-        Store.dispatch(shoot({
-          height: 13,
-          step: 6,
-          x: state.spaceship.x,
-          y: state.spaceship.y,
-          width: 4
-        }));
+    Object.keys(state.keyboard).forEach(key => {
+      /* Move the spaceship */
+      if (state.keyboard[key]
+        && ['Left', 'Up', 'Right', 'Down'].indexOf(key) > -1) {
+        Store.dispatch(moveSpaceship(key));
       }
+    });
+
+    /**
+     * Create new shoots when 'z' key is pressed and the
+     * spaceship's laser is loaded
+     **/
+    if (state.keyboard.z
+    && state.spaceship.cadence.remmaning === 0) {
+      Store.dispatch(shoot({
+        height: 13,
+        step: 6,
+        x: state.spaceship.x,
+        y: state.spaceship.y,
+        width: 4
+      }));
+    }
 
     /* Check collisions */
     state.enemies.every(enemy => {
       if (CollisorAnalyzer.spaceship(state.spaceship, enemy)) {
         if (Store.getState().player.credits > 1) {
           Store.dispatch(setScreen(<Continue />));
-        return false;
+          return false;
         }
 
         Store.dispatch(setScreen(<GameOver />));
