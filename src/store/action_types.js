@@ -27,3 +27,5 @@ export const REMOVE_ALL_ENEMIES = 'REMOVE_ALL_ENEMIES';
 export const SET_CREDITS = 'SET_CREDITS';
 export const SET_MULTIPLIER = 'SET_MULTIPLIER';
 export const RESET_PLAYER = 'RESET_PLAYER';
+
+export const SET_STATUS = 'SET_STATUS';
