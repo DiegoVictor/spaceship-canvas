@@ -66,8 +66,8 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
 
 /* Creates game main loop */
 ((frame) => {
-  frame(frame);
-})(frame => {
+  frame(frame, Store.getState());
+})((frame, state) => {
   requestAnimationFrame(() => {
     Store.dispatch(moveBackgroundBy(1));
 
@@ -114,6 +114,11 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
       return true;
     });
 
+    /* Make the other components redraw */
+    Store.dispatch(newFrame());
+    if (Store.getState().game.status !== 'playing') {
+      return frame(frame, Store.getState());
+    }
 
     /* Update shoots' positions */
     Store.dispatch(moveShoots()); 
@@ -123,8 +128,6 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
     Store.dispatch(createMeteor(Math.random() * 5 + 1));
     Store.dispatch(moveEnemies());
 
-    /* Make the other components redraw */
-    Store.dispatch(newFrame());
-    frame(frame);
+    frame(frame, Store.getState());
   });
 });
