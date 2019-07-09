@@ -15,7 +15,7 @@ import { setStatus } from '../../store/actions/game';
 
 import Game from './Game';
 
-import { HWIDTH, HHEIGHT } from '../../globals';
+import { HALF_WIDTH, HALF_HEIGHT } from '../../globals';
 
 
 class GameOver extends Screen {
@@ -38,11 +38,11 @@ class GameOver extends Screen {
     return(<Group>
       <Background />
         <Text value="Game Over" textAlign="center"
-          x={HWIDTH} y={HHEIGHT + 15}
+          x={HALF_WIDTH} y={HALF_HEIGHT + 15}
         />
-        <Key value="r" x={HWIDTH - 17} y={HHEIGHT + 25} />
+        <Key value="r" x={HALF_WIDTH - 17} y={HALF_HEIGHT + 25} />
         <Text value="etry" textAlign="left" font="22px Bebas Neue"
-          x={HWIDTH + 20} y={HHEIGHT + 50}
+          x={HALF_WIDTH + 20} y={HALF_HEIGHT + 50}
         />
     </Group>);
   }

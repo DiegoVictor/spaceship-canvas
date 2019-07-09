@@ -15,7 +15,7 @@ import { setStatus } from '../../store/actions/game';
 import Game from './Game';
 import GameOver from './GameOver';
 
-import { HHEIGHT, HWIDTH } from '../../globals';
+import { HALF_HEIGHT, HALF_WIDTH } from '../../globals';
 
 
 class Continue extends Screen {
@@ -44,12 +44,12 @@ class Continue extends Screen {
       <Background />
       {['Do you wish to', 'continue?'].map((text, i) => 
         <Text value={text} textAlign="left" key={i}
-          x={HWIDTH - 72} y={HHEIGHT + i * 25}
+          x={HALF_WIDTH - 72} y={HALF_HEIGHT + i * 25}
         />
       )}
       {['y', 'n'].map((key, i) => 
         <Key key={i} value={key}
-          x={HWIDTH - 34 + i * 36} y={HHEIGHT + 40}
+          x={HALF_WIDTH - 34 + i * 36} y={HALF_HEIGHT + 40}
         />
       )}
     </Group>);
