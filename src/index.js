@@ -9,8 +9,7 @@ import { setScreen, newFrame } from './store/actions/screen';
 import { moveBackgroundBy, setBackground } from './store/actions/background';
 import { setSpriteSheet } from './store/actions/spaceship-canvas';
 import { advanceProgress } from './store/actions/progress';
-import { toggleKey } from './store/actions/keyboard';
-import { moveSpaceship, toggleMovementSpeed, reloadSpaceshipLaser } from './store/actions/spaceship';
+import { moveSpaceship, reloadSpaceshipLaser } from './store/actions/spaceship';
 import { shoot, moveShoots } from './store/actions/shoots';
 import { createMeteor } from './store/actions/meteor';
 import { moveEnemies } from './store/actions/enemies';
@@ -64,25 +63,6 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
     Store.dispatch(setScreen(<Game />));
     }, 1000);
 }}/>));
-
-['keydown', 'keyup'].forEach(event_name => {
-  document.addEventListener(event_name, event => {
-    let key = event.key.replace('Arrow', '');
-
-    if (!Store.getState().keyboard[key]
-    || event_name === 'keyup') {
-      switch (key) {
-        case 'Shift':
-          Store.dispatch(toggleMovementSpeed());
-          break;
-
-        case 'z':
-        default:
-          Store.dispatch(toggleKey(key));
-      }
-    }
-  });
-});
 
 /* Creates game main loop */
 ((frame) => {
