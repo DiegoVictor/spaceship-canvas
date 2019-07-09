@@ -18,8 +18,8 @@ import { moveEnemies } from './store/actions/enemies';
 import SpaceshipCanvas from './components/SpaceshipCanvas';
 import Screen from './containers/Screen';
 
-import Loading from './screens/Loading';
-import Game from './screens/Game';
+import Continue from './containers/screens/Continue';
+import GameOver from './containers/screens/GameOver';
 
 import CollisorAnalyzer from './libs/CollisorAnalyzer';
 
@@ -124,9 +124,11 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
     state.enemies.every(enemy => {
       if (CollisorAnalyzer.spaceship(state.spaceship, enemy)) {
         if (Store.getState().player.credits > 1) {
+          Store.dispatch(setScreen(<Continue />));
         return false;
         }
 
+        Store.dispatch(setScreen(<GameOver />));
         return false;
       }
       return true;
