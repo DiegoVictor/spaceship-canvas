@@ -9,6 +9,7 @@ class Key extends SpaceshipCanvas {
       r: 9
     };
   }
+
   draw(ctx) {
     let key = this.keys[this.props.value];
     if (SpaceshipCanvas.spritesheet) {
