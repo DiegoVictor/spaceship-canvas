@@ -11,6 +11,7 @@ import Text from '../../components/Text';
 import { collided } from '../../store/actions/spaceship';
 import { setScreen } from '../../store/actions/screen';
 import { setStatus } from '../../store/actions/game';
+import { clearPressedKeys } from "../../store/actions/keyboard";
 
 import Game from './Game';
 import GameOver from './GameOver';
@@ -37,6 +38,7 @@ class Continue extends Screen {
   componentDidMount() {
     this.props.setStatus('continue');
     this.props.collided();
+    this.props.clearPressedKeys();
   }
 
   render() {
@@ -58,5 +60,5 @@ class Continue extends Screen {
 
 export default connect(
   null,
-  { setStatus, setScreen, collided }
+  { setStatus, setScreen, collided, clearPressedKeys }
 )(Continue);

@@ -12,6 +12,7 @@ import { collided } from '../../store/actions/spaceship';
 import { restart } from '../../store/actions/game';
 import { setScreen } from '../../store/actions/screen';
 import { setStatus } from '../../store/actions/game';
+import { clearPressedKeys } from "../../store/actions/keyboard";
 
 import Game from './Game';
 
@@ -32,6 +33,7 @@ class GameOver extends Screen {
   componentDidMount() {
     this.props.setStatus('gameover');
     this.props.collided();
+    this.props.clearPressedKeys();
   }
 
   render() {
@@ -51,5 +53,5 @@ class GameOver extends Screen {
 
 export default connect(
   null,
-  { setStatus, setScreen, restart, collided }
+  { setStatus, setScreen, restart, collided, clearPressedKeys }
 )(GameOver);

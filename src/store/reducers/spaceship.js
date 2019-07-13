@@ -25,28 +25,28 @@ export default (state = initial_state, action) => {
        * outside of the screen
        **/
       switch(action.payload) {
-        case 'Up':
+        case 'up':
           new_state.y = state.y - state.step;
           if (new_state.y < 0) {
             new_state.y = 0;
           }
           break;
 
-        case 'Down':
+        case 'down':
           new_state.y = state.y + state.step;
           if (new_state.y > HEIGHT - state.height) {
             new_state.y = HEIGHT - state.height;
           }
           break;
         
-        case 'Left':
+        case 'left':
           new_state.x = state.x - state.step;
           if (new_state.x < 0) {
             new_state.x = 0;
           }
           break;
 
-        case 'Right':
+        case 'right':
           new_state.x = state.x + state.step;
           if (new_state.x > WIDTH) {
             new_state.x = WIDTH;

@@ -15,6 +15,7 @@ import Spaceship from '../Spaceship';
 import { setStatus } from '../../store/actions/game';
 import { toggleKey } from '../../store/actions/keyboard';
 import { toggleMovementSpeed } from '../../store/actions/spaceship';
+import { clearPressedKeys } from "../../store/actions/keyboard";
 
 import { HEIGHT, WIDTH } from '../../globals';
 
@@ -24,21 +25,21 @@ class Game extends Screen {
     super(props);
     ['keydown', 'keyup'].forEach(event_name => {
       this.attach(event_name, event => {
-        const key = event.key.replace('Arrow', '');
+        const key = event.key.replace('Arrow', '').toLowerCase();
         let pressing = true;
 
         if (event.type === 'keyup') {
           pressing = false;
         }
-  
+
         if (!props.keyboard[key] || !pressing) {
           switch (key) {
-            case 'Shift':
+            case 'shift':
               props.toggleMovementSpeed(pressing);
               break;
   
             default:
-              if (['z', 'Up', 'Right', 'Down', 'Left'].indexOf(key) > -1) {
+              if (['z', 'up', 'right', 'down', 'left'].indexOf(key) > -1) {
                 props.toggleKey(key, pressing);
               }
           }
@@ -49,6 +50,7 @@ class Game extends Screen {
 
   componentDidMount() {
     this.props.setStatus('playing');
+    this.props.clearPressedKeys();
   }
 
   render() {
@@ -75,5 +77,5 @@ export default connect(
   state => ({
     keyboard: state.keyboard,
   }),
-  { toggleKey, toggleMovementSpeed, setStatus }
+  { toggleKey, toggleMovementSpeed, setStatus, clearPressedKeys }
 )(Game);
