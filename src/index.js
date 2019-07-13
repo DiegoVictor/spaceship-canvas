@@ -121,23 +121,24 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
         }
       }
     }
-      return true;
-    });
 
-    /* Make the other components redraw */
-      Store.dispatch(newFrame());
     if (Store.getState().game.status !== 'playing') {
+      Store.dispatch(newFrame());
       return frame(frame, Store.getState());
     }
 
-    /* Update shoots' positions */
-    Store.dispatch(moveShoots()); 
+    /* Decrement the time until the spaceship's next shoot */
     Store.dispatch(reloadSpaceshipLaser());
 
     /* Create meteors */
     Store.dispatch(createMeteor(Math.random() * 5 + 1));
+
+    /* Update things' positions on the screen */
+    Store.dispatch(moveShoots()); 
     Store.dispatch(moveEnemies());
 
+    /* Make the other components redraw */
+    Store.dispatch(newFrame());
     frame(frame, Store.getState());
   });
 });
