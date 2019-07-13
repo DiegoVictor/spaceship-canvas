@@ -1,19 +1,20 @@
 export default {
-  spaceship(spaceship, obj) {
+  wasSpaceshipHitted(spaceship, obj) {
     const hheight = spaceship.height / 2,
     hwidth = spaceship.width / 2,
     critic_areas = [{
       height: hheight,
-      width: spaceship.width - hwidth - 2,
-      x: spaceship.x + 1,
+      x: spaceship.x - hwidth + 1,
       y: spaceship.y + hheight - 1,
+      width: spaceship.width - 2
     },
     {
       height: hheight,
-      width: hwidth - 4,
-      x: spaceship.x - 4,
+      x: spaceship.x - 3,
       y: spaceship.y,
-    }];
+      width: hwidth - 6,
+    }
+  ];
     
     return !critic_areas.every(area => {
       return !this.verify(area, obj);
