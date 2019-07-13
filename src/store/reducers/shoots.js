@@ -13,11 +13,11 @@ export default (state = initial_state, action) => {
     case MOVE_SHOOTS:
       shoots = Object.assign([], state);
       for(let i in shoots) {
-        if (shoots[i].y > -shoots[i].step) {
+        if (shoots[i].y >= -shoots[i].step) {
           shoots[i].y -= shoots[i].step;
         }
         else {
-          delete shoots[i--];
+          shoots.splice(i--, 1);
         }
       }
       return shoots;
