@@ -1,4 +1,4 @@
-import { SET_CREDITS, SET_MULTIPLIER, RESET_PLAYER } from '../action_types';
+import { SET_CREDITS, SET_MULTIPLIER, RESET_PLAYER, SCORED } from '../action_types';
 
 const initial_state = {
   credits: 3,
@@ -26,6 +26,11 @@ export default (state = initial_state, action) => {
         multiplier: 1,
         credits: 3,
         score: 0
+      });
+    
+    case SCORED:
+      return Object.assign({}, state, {
+        score: state.score + action.payload * state.multiplier
       });
 
     default:

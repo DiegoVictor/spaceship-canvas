@@ -16,19 +16,19 @@ export default {
     }];
     
     return !critic_areas.every(area => {
-      return this.check(area, obj);
+      return !this.verify(area, obj);
     });
   },
 
-  check(a, b) {
+  verify(a, b) {
     if ((a.y > b.y && a.y < b.y + b.height) ||
       (a.y + a.height > b.y && a.y + a.height < b.y + b.height)) {
 
       if ((a.x > b.x && a.x < b.x + b.width) ||
       (a.x + a.width > b.x && a.x + a.width < b.x + b.width)) {
-        return false
+        return true;
       }
     }
-    return true;
+    return false;
   }
 };

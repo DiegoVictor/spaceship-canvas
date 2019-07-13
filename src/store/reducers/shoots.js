@@ -1,4 +1,4 @@
-import { SHOOT, MOVE_SHOOTS, REMOVE_ALL_SHOOTS } from '../action_types';
+import { SHOOT, MOVE_SHOOTS, REMOVE_ALL_SHOOTS, REMOVE_SHOOT } from '../action_types';
 
 const initial_state = [];
 
@@ -24,6 +24,11 @@ export default (state = initial_state, action) => {
 
     case REMOVE_ALL_SHOOTS:
       return [];
+
+    case REMOVE_SHOOT:
+      shoots = Object.assign([], state);
+      shoots.splice(action.payload, 1);
+      return shoots;
 
     default:
       return state;

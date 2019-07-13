@@ -10,9 +10,9 @@ import { moveBackgroundBy, setBackground } from './store/actions/background';
 import { setSpriteSheet } from './store/actions/spaceship-canvas';
 import { advanceProgress } from './store/actions/progress';
 import { moveSpaceship, reloadSpaceshipLaser } from './store/actions/spaceship';
-import { shoot, moveShoots } from './store/actions/shoots';
+import { shoot, moveShoots, removeShoot } from './store/actions/shoots';
 import { createMeteor } from './store/actions/meteor';
-import { moveEnemies } from './store/actions/enemies';
+import { moveEnemies, destroyEnemy } from './store/actions/enemies';
 
 import SpaceshipCanvas from './components/SpaceshipCanvas';
 import Screen from './containers/Screen';
@@ -81,7 +81,7 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
     Object.keys(state.keyboard).forEach(key => {
       /* Move the spaceship */
       if (state.keyboard[key]
-        && ['Left', 'Up', 'Right', 'Down'].indexOf(key) > -1) {
+        && ['left', 'up', 'right', 'down'].indexOf(key) > -1) {
         Store.dispatch(moveSpaceship(key));
       }
     });
@@ -102,21 +102,30 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
     }
 
     /* Check collisions */
-    state.enemies.every(enemy => {
-      if (CollisorAnalyzer.spaceship(state.spaceship, enemy)) {
-        if (Store.getState().player.credits > 1) {
+    for(let i in state.enemies) {
+      /* Was the spaceship reached? */
+      if (CollisorAnalyzer.wasSpaceshipHitted(state.spaceship, state.enemies[i])) {
+        if (state.player.credits > 1) {
           Store.dispatch(setScreen(<Continue />));
-          return false;
+          break;
         }
-
         Store.dispatch(setScreen(<GameOver />));
-        return false;
+        break;
       }
+
+      /* A spaceship's shoot reached a meteor? */
+      for(let j in state.shoots) {
+        if (CollisorAnalyzer.verify(state.shoots[j], state.enemies[i])) {
+          Store.dispatch(destroyEnemy(state.enemies[i], i));
+          Store.dispatch(removeShoot(j));
+        }
+      }
+    }
       return true;
     });
 
     /* Make the other components redraw */
-    Store.dispatch(newFrame());
+      Store.dispatch(newFrame());
     if (Store.getState().game.status !== 'playing') {
       return frame(frame, Store.getState());
     }

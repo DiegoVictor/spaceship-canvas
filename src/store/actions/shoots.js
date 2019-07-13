@@ -1,4 +1,4 @@
-import { SHOOT, MOVE_SHOOTS, START_RELOAD_SPACESHIP_LASER, REMOVE_ALL_SHOOTS } from "../action_types";
+import { SHOOT, MOVE_SHOOTS, START_RELOAD_SPACESHIP_LASER, REMOVE_ALL_SHOOTS, REMOVE_SHOOT } from "../action_types";
 
 export function shoot(shoot) {
   return dispatch => {
@@ -14,3 +14,7 @@ export function moveShoots() {
 export function removeAllShoots() {
   return { type: REMOVE_ALL_SHOOTS };
 }
+
+export function removeShoot(index) {
+  return { type: REMOVE_SHOOT, payload: index };
+};

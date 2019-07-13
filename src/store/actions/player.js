@@ -1,4 +1,4 @@
-import { SET_CREDITS, SET_MULTIPLIER, RESET_PLAYER } from '../action_types';
+import { SET_CREDITS, SET_MULTIPLIER, RESET_PLAYER, SCORED } from '../action_types';
 
 export function setCredits(value) {
   return { type: SET_CREDITS, payload: value };
@@ -10,4 +10,8 @@ export function setMultiplier(value) {
 
 export function resetPlayer() {
   return { type: RESET_PLAYER };
+};
+
+export function scored(enemy) {
+  return { type: SCORED, payload: enemy.score };
 };

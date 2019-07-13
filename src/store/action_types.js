@@ -18,14 +18,17 @@ export const RESET_SPACESHIP = 'RESET_SPACESHIP';
 
 export const SHOOT = 'SHOOT';
 export const MOVE_SHOOTS = 'MOVE_SHOOTS';
+export const REMOVE_SHOOT = 'REMOVE_SHOOT';
 export const REMOVE_ALL_SHOOTS = 'REMOVE_ALL_SHOOTS';
 
 export const CREATE_METEOR = 'CREATE_METEOR';
 export const MOVE_ENEMIES = 'MOVE_ENEMIES';
 export const REMOVE_ALL_ENEMIES = 'REMOVE_ALL_ENEMIES';
+export const REMOVE_ENEMY = 'REMOVE_ENEMY';
 
 export const SET_CREDITS = 'SET_CREDITS';
 export const SET_MULTIPLIER = 'SET_MULTIPLIER';
 export const RESET_PLAYER = 'RESET_PLAYER';
+export const SCORED = 'SCORED';
 
 export const SET_STATUS = 'SET_STATUS';

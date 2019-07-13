@@ -1,4 +1,5 @@
-import { MOVE_ENEMIES, REMOVE_ALL_ENEMIES } from '../action_types';
+import { MOVE_ENEMIES, REMOVE_ALL_ENEMIES, REMOVE_ENEMY } from '../action_types';
+
 const initial_state = [];
 
 export default (state = initial_state, action) => {
@@ -15,6 +16,11 @@ export default (state = initial_state, action) => {
     
     case REMOVE_ALL_ENEMIES:
       return [];
+
+    case REMOVE_ENEMY:
+      enemies = Object.assign([], state);
+      enemies.splice(action.payload, 1);
+      return enemies;
 
     default:
       return state;
