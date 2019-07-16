@@ -13,6 +13,7 @@ import { moveSpaceship, reloadSpaceshipLaser } from './store/actions/spaceship';
 import { shoot, moveShoots, removeShoot } from './store/actions/shoots';
 import { createMeteor } from './store/actions/meteor';
 import { moveEnemies, destroyEnemy } from './store/actions/enemies';
+import { updateExplosions } from './store/actions/explosions';
 
 import SpaceshipCanvas from './components/SpaceshipCanvas';
 import Screen from './containers/Screen';
@@ -136,6 +137,7 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
     /* Update things' positions on the screen */
     Store.dispatch(moveShoots()); 
     Store.dispatch(moveEnemies());
+    Store.dispatch(updateExplosions());
 
     /* Make the other components redraw */
     Store.dispatch(newFrame());

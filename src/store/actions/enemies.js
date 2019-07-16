@@ -17,5 +17,6 @@ export function destroyEnemy(enemy, index) {
   return dispatch => {
     dispatch(scored(enemy));
     dispatch(removeEnemy(index));
+    dispatch(showExplosion(enemy));
   };
 };

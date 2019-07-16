@@ -1,6 +1,7 @@
 import { setCredits, setMultiplier } from './player';
 import { removeAllEnemies } from './enemies';
 import { removeAllShoots } from "./shoots";
+import { removeAllExplosions } from "./explosions";
 import { MOVE_SPACESHIP, TOGGLE_MOVEMENT_SPEED, RELOAD_SPACESHIP_LASER, RESET_SPACESHIP } from "../action_types";
 
 export function moveSpaceship(key) {
@@ -21,6 +22,7 @@ export function collided() {
     dispatch(setMultiplier(1));
     dispatch(removeAllEnemies());
     dispatch(removeAllShoots());
+    dispatch(removeAllExplosions());
   };
 };
 

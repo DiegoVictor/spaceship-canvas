@@ -11,6 +11,7 @@ import Multiplier from '../Multiplier';
 import Score from '../Score';
 import Shoots from '../Shoots';
 import Spaceship from '../Spaceship';
+import Explosions from '../Explosions';
 
 import { setStatus } from '../../store/actions/game';
 import { toggleKey } from '../../store/actions/keyboard';
@@ -69,6 +70,8 @@ class Game extends Screen {
 
       {/* Draw enemies */}
       <Enemies />
+
+      <Explosions />
     </Group>);
   }
 }
