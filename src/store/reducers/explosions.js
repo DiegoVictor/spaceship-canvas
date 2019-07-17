@@ -40,7 +40,7 @@ export default (state = initial_state, action) => {
 
           case 'burning':
             explosion.energy--;
-            if (explosion.energy == 0) {
+            if (explosion.energy === 0) {
               explosion.status = 'decreasing';
             }
             break;
