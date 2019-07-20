@@ -1,4 +1,5 @@
 import { scored } from './player';
+import { showExplosion } from "./explosions";
 import { MOVE_ENEMIES, REMOVE_ALL_ENEMIES, REMOVE_ENEMY } from '../action_types';
 
 export function moveEnemies() {
