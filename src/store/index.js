@@ -13,7 +13,8 @@ import meteors from './reducers/meteors';
 import enemies from './reducers/enemies';
 import game from './reducers/game';
 import explosions from './reducers/explosions';
+import items from './reducers/items';
 
 export default createStore(combineReducers({
-  screen, background, progress, spaceship_canvas, player, spaceship, keyboard, shoots, meteors, enemies, game, explosions
+  screen, background, progress, spaceship_canvas, player, spaceship, keyboard, shoots, meteors, enemies, game, explosions, items
 }), applyMiddleware(thunk));

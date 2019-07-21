@@ -14,6 +14,7 @@ import { shoot, moveShoots, removeShoot } from './store/actions/shoots';
 import { createMeteor } from './store/actions/meteor';
 import { moveEnemies, destroyEnemy } from './store/actions/enemies';
 import { updateExplosions } from './store/actions/explosions';
+import { moveItems, collectItem } from './store/actions/items';
 
 import SpaceshipCanvas from './components/SpaceshipCanvas';
 import Screen from './containers/Screen';
@@ -123,6 +124,13 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
       }
     }
 
+    /*  Collect items */
+    for(let i in state.items) {
+      if (CollisorAnalyzer.wasSpaceshipHitted(state.spaceship, state.items[i])) {
+        Store.dispatch(collectItem(state.items[i], i));
+      }
+    }
+
     if (Store.getState().game.status !== 'playing') {
       Store.dispatch(newFrame());
       return frame(frame, Store.getState());
@@ -138,6 +146,7 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
     Store.dispatch(moveShoots()); 
     Store.dispatch(moveEnemies());
     Store.dispatch(updateExplosions());
+    Store.dispatch(moveItems());
 
     /* Make the other components redraw */
     Store.dispatch(newFrame());

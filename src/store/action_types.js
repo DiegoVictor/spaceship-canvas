@@ -37,3 +37,7 @@ export const SET_STATUS = 'SET_STATUS';
 export const SHOW_EXPLOSION = 'SHOW_EXPLOSION';
 export const UPDATE_EXPLOSIONS = 'UPDATE_EXPLOSIONS';
 export const REMOVE_ALL_EXPLOSIONS = 'REMOVE_ALL_EXPLOSIONS';
+
+export const DROP_ITEM = 'DROP_ITEM';
+export const MOVE_ITEMS = 'MOVE_ITEMS';
+export const REMOVE_ITEM = 'REMOVE_ITEM';

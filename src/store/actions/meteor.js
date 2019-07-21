@@ -6,11 +6,16 @@ export function createMeteor(step = 1) {
   return {
     type: CREATE_METEOR,
     payload: {
+      drop: [
+        {value: 50, amount: 4},
+        {value: 150, amount: 2},
+        {value: 300, amount: 1}
+      ],
       height: size,
       rotation: 0,
       score: 25,
       step,
-      type: Math.floor(Math.random() * 4),
+      type: Math.floor(Math.random() * 12),
       x: parseInt(Math.random() * (WIDTH - size), 10),
       y: -size,
 		  width: size

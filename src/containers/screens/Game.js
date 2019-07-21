@@ -12,6 +12,7 @@ import Score from '../Score';
 import Shoots from '../Shoots';
 import Spaceship from '../Spaceship';
 import Explosions from '../Explosions';
+import Items from '../Items';
 
 import { setStatus } from '../../store/actions/game';
 import { toggleKey } from '../../store/actions/keyboard';
@@ -65,12 +66,10 @@ class Game extends Screen {
 
       <Spaceship />
 
-      {/* Draw player and enemies' shoots */}
+      {/* Draw arrays */}
       <Shoots />
-
-      {/* Draw enemies */}
       <Enemies />
-
+      <Items />
       <Explosions />
     </Group>);
   }
