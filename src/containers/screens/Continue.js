@@ -31,6 +31,8 @@ class Continue extends Screen {
         case 'n':
           props.setScreen(<GameOver />);
           break;
+        
+        default:
       }
     });
   }

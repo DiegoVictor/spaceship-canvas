@@ -45,6 +45,7 @@ export default (state = initial_state, action) => {
             }
             break;
 
+          default:
           case 'decreasing':
             explosion.height -= explosion.step;
             explosion.width -= explosion.step;
