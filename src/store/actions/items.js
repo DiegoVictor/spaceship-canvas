@@ -11,7 +11,7 @@ export function dropItem(x, y, value, count = 1) {
             height: 8,
             score: value,
             step: -1,
-            x: x + 4,
+            x: x + 4 + (-(Math.random() * 6) ^ ((Math.random() * 2) + 1)),
             y: y + 4,
             width: 8
           },
