@@ -119,7 +119,7 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
       for(let j in state.shoots) {
         if (CollisorAnalyzer.verify(state.shoots[j], state.enemies[i])) {
           Store.dispatch(destroyEnemy(state.enemies[i], i));
-          Store.dispatch(removeShoot(j));
+          Store.dispatch(removeShoot(j--));
         }
       }
     }
@@ -127,7 +127,7 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
     /*  Collect items */
     for(let i in state.items) {
       if (CollisorAnalyzer.wasSpaceshipHitted(state.spaceship, state.items[i])) {
-        Store.dispatch(collectItem(state.items[i], i));
+        Store.dispatch(collectItem(state.items[i], i--));
       }
     }
 
@@ -140,7 +140,7 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
     Store.dispatch(reloadSpaceshipLaser());
 
     /* Create meteors */
-    Store.dispatch(createMeteor(Math.random() * 5 + 1));
+    Store.dispatch(createMeteor(1));
 
     /* Update things' positions on the screen */
     Store.dispatch(moveShoots()); 
