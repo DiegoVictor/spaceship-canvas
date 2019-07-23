@@ -1,25 +1,38 @@
 import { scored } from './player';
 import { DROP_ITEM, MOVE_ITEMS, REMOVE_ITEM } from '../action_types';
 
-export function dropItem(x, y, value, count = 1) {
-  return dispatch => {
-    for(let i = 0; i < count; i++) {
-      setTimeout(() => {
-        dispatch({
-          type: DROP_ITEM,
-          payload: {
-            height: 8,
-            score: value,
-            step: -1,
-            x: x + 4 + (-(Math.random() * 6) ^ ((Math.random() * 2) + 1)),
-            y: y + 4,
-            width: 8
-          },
-        });
-      }, i * 200);
-    }
-  };
+export function dropItem(item) {
+  return { type: DROP_ITEM, payload: item };
 };
+
+export function dropItems(enemy) {
+  return dispatch => {
+    function dropRecursive(items) {
+      if (items.length > 0) {
+        dispatch(dropItem(items.shift()));
+        setTimeout(() => {
+          dropRecursive(items);
+        }, 200);
+      }
+    }
+
+    dropRecursive((items => {
+      enemy.drop.forEach(item => {
+        for(let i = 0; i < Math.floor(Math.random() * item.amount); i++) {
+          items.push({
+            height: 8,
+            score: item.value,
+            step: -1,
+            x: enemy.x + 4 + (-(Math.random() * 6) ^ ((Math.random() * 2) + 1)),
+            y: enemy.y + 4,
+            width: 8
+          });
+        }
+      });
+      return items;
+    })([]));
+  }
+}
 
 export function moveItems() {
   return { type: MOVE_ITEMS };

@@ -16,12 +16,10 @@ export default (state = initial_state, action) => {
       items = Object.assign([], state);
       for(let i in items) {
         items[i].y += items[i].step;
-        if (items[i].step < 3.3) {
-          items[i].step += 0.02;
-        }
+        items[i].step += 0.01;
         if (items[i].y > HEIGHT) {
-          items.splice(i--, 1);
-          continue;
+          items.splice(i, 1);
+          i--;
         }
       }
       return items;
