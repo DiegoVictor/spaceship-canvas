@@ -119,7 +119,9 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
       for(let j in state.shoots) {
         if (CollisorAnalyzer.verify(state.shoots[j], state.enemies[i])) {
           Store.dispatch(destroyEnemy(state.enemies[i], i));
-          Store.dispatch(removeShoot(j--));
+          Store.dispatch(removeShoot(j));
+          i--;
+          break;
         }
       }
     }
