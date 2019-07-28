@@ -13,13 +13,14 @@ import Shoots from '../Shoots';
 import Spaceship from '../Spaceship';
 import Explosions from '../Explosions';
 import Items from '../Items';
+import Text from '../../components/Text';
 
 import { setStatus } from '../../store/actions/game';
 import { toggleKey } from '../../store/actions/keyboard';
 import { toggleMovementSpeed } from '../../store/actions/spaceship';
 import { clearPressedKeys } from "../../store/actions/keyboard";
 
-import { HEIGHT, WIDTH } from '../../globals';
+import { HEIGHT, HALF_HEIGHT, WIDTH, HALF_WIDTH } from '../../globals';
 
 
 class Game extends Screen {
@@ -39,7 +40,18 @@ class Game extends Screen {
             case 'shift':
               props.toggleMovementSpeed(pressing);
               break;
-  
+
+            case 'p':
+              if (event_name === 'keydown') {
+                let value = this.props.keyboard.p;
+                props.toggleKey('p', !value);
+                props.setStatus('playing');
+                if (!value) {
+                  props.setStatus('pause');
+                }
+              }
+              break;
+ 
             default:
               if (['z', 'up', 'right', 'down', 'left'].indexOf(key) > -1) {
                 props.toggleKey(key, pressing);
@@ -71,6 +83,13 @@ class Game extends Screen {
       <Enemies />
       <Items />
       <Explosions />
+
+
+      {this.props.keyboard.p &&
+        <Text value="Pause" textAlign="center"
+          x={HALF_WIDTH} y={HALF_HEIGHT + 11}
+        />
+      }
     </Group>);
   }
 }

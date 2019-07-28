@@ -74,7 +74,14 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
   frame(frame, Store.getState());
 })((frame, state) => {
   requestAnimationFrame(() => {
-    Store.dispatch(moveBackgroundBy(1)); 
+    if (!state.keyboard.p) {
+      Store.dispatch(moveBackgroundBy(1));
+    }
+
+    if (state.game.status !== 'playing') {
+      Store.dispatch(newFrame());
+      return frame(frame, Store.getState());
+    }
 
     /**
      * Doing things that depends of the keys 
@@ -131,11 +138,6 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
       if (CollisorAnalyzer.wasSpaceshipHitted(state.spaceship, state.items[i])) {
         Store.dispatch(collectItem(state.items[i], i--));
       }
-    }
-
-    if (Store.getState().game.status !== 'playing') {
-      Store.dispatch(newFrame());
-      return frame(frame, Store.getState());
     }
 
     /* Decrement the time until the spaceship's next shoot */

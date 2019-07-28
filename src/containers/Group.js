@@ -5,9 +5,12 @@ class Group extends React.Component {
   render() {
     /* Redraw the children components */
     return React.Children.map(this.props.children, child => {
-      return React.cloneElement(child, {
-        timestamp: this.props.timestamp
-      });
+      if (child) {
+        return React.cloneElement(child, {
+          timestamp: this.props.timestamp
+        });
+      }
+      return child;
     });
   }
 }
