@@ -20,12 +20,12 @@ export function dropItems(enemy) {
       enemy.drop.forEach(item => {
         for(let i = 0; i < Math.floor(Math.random() * item.amount); i++) {
           items.push({
-            height: 8,
+            height: 10,
             score: item.value,
             step: -1,
             x: enemy.x + 4 + (-(Math.random() * 6) ^ ((Math.random() * 2) + 1)),
             y: enemy.y + 4,
-            width: 8
+            width: 10
           });
         }
       });

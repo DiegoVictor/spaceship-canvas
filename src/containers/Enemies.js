@@ -8,7 +8,7 @@ class Enemies extends SpaceshipCanvas {
       ctx.translate(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2);
       ctx.rotate(enemy.rotation);
       ctx.drawImage(
-        SpaceshipCanvas.spritesheet, 3 + enemy.type * 30, 87, 28, 28,
+        SpaceshipCanvas.spritesheet, 3 + enemy.type * 30, 55, 28, 28,
         -enemy.width / 2, -enemy.height / 2, enemy.width, enemy.height
       );
       ctx.restore();
