@@ -4,7 +4,7 @@ class Item extends SpaceshipCanvas {
   draw(ctx) {
     let x = (Math.floor(this.props.score / 150) * 23);
     ctx.drawImage(
-      SpaceshipCanvas.spritesheet, 126 + x, 28, 20, 20,
+      SpaceshipCanvas.spritesheet, 126 + x, 27, 20, 20,
       this.props.x, this.props.y, this.props.width, this.props.height
     );
   }
