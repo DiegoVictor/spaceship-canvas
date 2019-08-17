@@ -6,6 +6,7 @@ export function createMeteor(step = 1) {
   return {
     type: CREATE_METEOR,
     payload: {
+      type: "meteor",
       drop: [
         {value: 50, amount: 4},
         {value: 150, amount: 2},
@@ -15,10 +16,10 @@ export function createMeteor(step = 1) {
       rotation: 0,
       score: 25,
       step,
-      type: Math.floor(Math.random() * 12),
+      version: Math.floor(Math.random() * 12),
       x: parseInt(Math.random() * (WIDTH - size), 10),
       y: -size,
 		  width: size
     }
- };
+  };
 };
