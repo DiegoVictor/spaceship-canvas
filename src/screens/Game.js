@@ -3,24 +3,24 @@ import { connect } from 'react-redux';
 
 import Screen from './Screen';
 
-import Background from '../Background';
-import Enemies from '../Enemies';
-import Group from '../Group';
-import Lifebar from '../Lifebar';
-import Multiplier from '../Multiplier';
-import Score from '../Score';
-import Shoots from '../Shoots';
-import Spaceship from '../Spaceship';
-import Explosions from '../Explosions';
-import Items from '../Items';
-import Text from '../../components/Text';
+import Background from '../containers/Background';
+import Enemies from '../containers/Enemies';
+import Group from '../containers/Group';
+import Lifebar from '../containers/Lifebar';
+import Multiplier from '../containers/Multiplier';
+import Score from '../containers/Score';
+import Shoots from '../containers/Shoots';
+import Spaceship from '../containers/Spaceship';
+import Explosions from '../containers/Explosions';
+import Items from '../containers/Items';
+import Text from '../components/Text';
 
-import { setStatus } from '../../store/actions/game';
-import { toggleKey } from '../../store/actions/keyboard';
-import { toggleMovementSpeed } from '../../store/actions/spaceship';
-import { clearPressedKeys } from "../../store/actions/keyboard";
+import { setStatus } from '../store/actions/game';
+import { toggleKey } from '../store/actions/keyboard';
+import { toggleMovementSpeed } from '../store/actions/spaceship';
+import { clearPressedKeys } from "../store/actions/keyboard";
 
-import { HEIGHT, HALF_HEIGHT, WIDTH, HALF_WIDTH } from '../../globals';
+import { HEIGHT, HALF_HEIGHT, WIDTH, HALF_WIDTH } from '../globals';
 
 
 class Game extends Screen {

@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Background from '../Background';
-import Group from '../Group';
-import Progress from '../Progress';
-import Text from '../../components/Text';
+import Background from '../containers/Background';
+import Group from '../containers/Group';
+import Progress from '../containers/Progress';
+import Text from '../components/Text';
 
-import { setStatus } from '../../store/actions/game';
+import { setStatus } from '../store/actions/game';
 
-import { HEIGHT, WIDTH } from '../../globals';
+import { HEIGHT, WIDTH } from '../globals';
 
 class Loading extends React.Component {
   componentDidMount() {

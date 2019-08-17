@@ -3,20 +3,20 @@ import { connect } from 'react-redux';
 
 import Screen from './Screen';
 
-import Background from '../Background';
-import Group from '../Group';
-import Key from '../../components/Key';
-import Text from '../../components/Text';
+import Background from '../containers/Background';
+import Group from '../containers/Group';
+import Key from '../components/Key';
+import Text from '../components/Text';
 
-import { collided } from '../../store/actions/spaceship';
-import { restart } from '../../store/actions/game';
-import { setScreen } from '../../store/actions/screen';
-import { setStatus } from '../../store/actions/game';
-import { clearPressedKeys } from "../../store/actions/keyboard";
+import { collided } from '../store/actions/spaceship';
+import { restart } from '../store/actions/game';
+import { setScreen } from '../store/actions/screen';
+import { setStatus } from '../store/actions/game';
+import { clearPressedKeys } from "../store/actions/keyboard";
 
 import Game from './Game';
 
-import { HALF_WIDTH, HALF_HEIGHT } from '../../globals';
+import { HALF_WIDTH, HALF_HEIGHT } from '../globals';
 
 
 class GameOver extends Screen {
