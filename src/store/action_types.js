@@ -23,6 +23,7 @@ export const REMOVE_SHOOT = 'REMOVE_SHOOT';
 export const REMOVE_ALL_SHOOTS = 'REMOVE_ALL_SHOOTS';
 
 export const CREATE_METEOR = 'CREATE_METEOR';
+export const CREATE_UFO = 'CREATE_UFO';
 export const MOVE_ENEMIES = 'MOVE_ENEMIES';
 export const REMOVE_ALL_ENEMIES = 'REMOVE_ALL_ENEMIES';
 export const REMOVE_ENEMY = 'REMOVE_ENEMY';

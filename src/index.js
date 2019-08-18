@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { HEIGHT, WIDTH } from './globals';
+import { HEIGHT, WIDTH, HALF_HEIGHT, HALF_WIDTH } from './globals';
+import { random } from './utils';
 
 import Store from './store';
 import { setScreen, newFrame } from './store/actions/screen';
@@ -11,7 +12,8 @@ import { setSpriteSheet } from './store/actions/spaceship-canvas';
 import { advanceProgress } from './store/actions/progress';
 import { moveSpaceship, reloadSpaceshipLaser } from './store/actions/spaceship';
 import { shoot, moveShoots, removeShoot } from './store/actions/shoots';
-import { createMeteor } from './store/actions/meteor';
+import { createMeteor } from './store/actions/meteors';
+import { createUfo } from './store/actions/ufos';
 import { moveEnemies, destroyEnemy } from './store/actions/enemies';
 import { updateExplosions } from './store/actions/explosions';
 import { moveItems, collectItem } from './store/actions/items';
@@ -143,8 +145,22 @@ Store.dispatch(setScreen(<Loading oncomplete={() => {
     /* Decrement the time until the spaceship's next shoot */
     Store.dispatch(reloadSpaceshipLaser());
 
-    /* Create meteors */
+    /* Create enemies */
     Store.dispatch(createMeteor(1));
+    if (state.enemies.length < 10) {
+      Store.dispatch(createUfo([
+        {
+          miliseconds: 3000,
+          x: random(HALF_WIDTH),
+          y: random(HALF_HEIGHT)
+        },
+        {
+          miliseconds: 3000,
+          x: WIDTH + 20,
+          y: random(HALF_HEIGHT)
+        }
+      ]));
+    }
 
     /* Update things' positions on the screen */
     Store.dispatch(moveShoots()); 

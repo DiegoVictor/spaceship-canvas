@@ -1,18 +1,22 @@
+import React from 'react';
+import Group from '../containers/Group';
+import Meteor from '../components/Meteor';
+import UFO from '../components/UFO';
 import { connect } from 'react-redux';
 import SpaceshipCanvas from '../components/SpaceshipCanvas';
 
 class Enemies extends SpaceshipCanvas {
   draw(ctx) {
-    this.props.items.forEach(enemy => {
-      ctx.save();
-      ctx.translate(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2);
-      ctx.rotate(enemy.rotation);
-      ctx.drawImage(
-        SpaceshipCanvas.spritesheet, 3 + enemy.type * 30, 55, 28, 28,
-        -enemy.width / 2, -enemy.height / 2, enemy.width, enemy.height
-      );
-      ctx.restore();
-    });
+    return (<Group>{this.props.items.map((enemy, i) => {
+      switch(enemy.type) {
+        case 'meteor':
+          return (<Meteor key={i} {...enemy} />);
+
+        case 'ufo':
+        default:
+          return (<UFO key={i} {...enemy} />);
+      }
+    })}</Group>);
   }
 }
 
