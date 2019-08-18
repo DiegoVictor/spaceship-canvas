@@ -39,7 +39,7 @@ export default (state = initial_state, action) => {
           default:
           case 'point':
             return Object.assign({}, state, {
-              score: state.score + action.payload * state.multiplier
+              score: state.score + action.payload.score * state.multiplier
             });
         }
       }
