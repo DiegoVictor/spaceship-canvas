@@ -1,5 +1,6 @@
 import { CREATE_METEOR } from '../action_types';
 import { WIDTH } from '../../globals';
+import { random } from '../../utils';
 
 export function createMeteor(step = 1) {
   let size = 16;
@@ -16,8 +17,8 @@ export function createMeteor(step = 1) {
       rotation: 0,
       score: 25,
       step,
-      version: Math.floor(Math.random() * 12),
-      x: parseInt(Math.random() * (WIDTH - size), 10),
+      version: random(12),
+      x: parseInt(random(WIDTH - size), 10),
       y: -size,
 		  width: size
     }
