@@ -7,7 +7,6 @@ export function createMeteor(step = 1) {
   return {
     type: CREATE_METEOR,
     payload: {
-      type: "meteor",
       drop: [
         {type: 'point', value: 50, amount: 4},
         {type: 'point', value: 150, amount: 2},
@@ -17,10 +16,11 @@ export function createMeteor(step = 1) {
       rotation: 0,
       score: 25,
       step,
+      type: 'meteor',
       version: random(12),
       x: parseInt(random(WIDTH - size), 10),
       y: -size,
-		  width: size
+      width: size
     }
   };
 };
