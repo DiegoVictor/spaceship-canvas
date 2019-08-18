@@ -19,10 +19,10 @@ import { moveItems, collectItem } from './store/actions/items';
 import SpaceshipCanvas from './components/SpaceshipCanvas';
 import Screen from './containers/Screen';
 
-import Loading from './containers/screens/Loading';
-import Game from './containers/screens/Game';
-import Continue from './containers/screens/Continue';
-import GameOver from './containers/screens/GameOver';
+import Loading from './screens/Loading';
+import Game from './screens/Game';
+import Continue from './screens/Continue';
+import GameOver from './screens/GameOver';
 
 import CollisorAnalyzer from './libs/CollisorAnalyzer';
 
