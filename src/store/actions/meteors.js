@@ -8,9 +8,9 @@ export function createMeteor(step = 1) {
     payload: {
       type: "meteor",
       drop: [
-        {value: 50, amount: 4},
-        {value: 150, amount: 2},
-        {value: 300, amount: 1}
+        {type: 'point', value: 50, amount: 4},
+        {type: 'point', value: 150, amount: 2},
+        {type: 'point', value: 300, amount: 1}
       ],
       height: size,
       rotation: 0,

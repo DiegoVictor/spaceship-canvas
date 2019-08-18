@@ -12,6 +12,7 @@ export function resetPlayer() {
   return { type: RESET_PLAYER };
 };
 
-export function scored(enemy) {
-  return { type: SCORED, payload: enemy.score };
+// payload can be a item or an enemy
+export function scored(payload) {
+  return { type: SCORED, payload };
 };

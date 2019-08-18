@@ -29,9 +29,21 @@ export default (state = initial_state, action) => {
       });
     
     case SCORED:
-      return Object.assign({}, state, {
-        score: state.score + action.payload * state.multiplier
-      });
+      if (typeof action.payload.type === 'string') {
+        switch (action.payload.type) {
+          case 'mult':
+            return Object.assign({}, state, {
+              multiplier: state.multiplier + 1
+            });
+  
+          default:
+          case 'point':
+            return Object.assign({}, state, {
+              score: state.score + action.payload * state.multiplier
+            });
+        }
+      }
+      return state;
 
     default:
       return state;

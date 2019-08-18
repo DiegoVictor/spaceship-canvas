@@ -17,16 +17,22 @@ export function dropItems(enemy) {
     }
 
     dropRecursive((items => {
-      enemy.drop.forEach(item => {
-        for(let i = 0; i < Math.floor(Math.random() * item.amount); i++) {
-          items.push({
+      enemy.drop.forEach(drop => {
+        for(let i = 0; i < Math.floor(Math.random() * drop.amount); i++) {
+          let item = {
             height: 10,
-            score: item.value,
             step: -1,
+            type: drop.type,
             x: enemy.x + 4 + (-(Math.random() * 6) ^ ((Math.random() * 2) + 1)),
             y: enemy.y + 4,
             width: 10
-          });
+          };
+
+          if (typeof drop.value === 'number') {
+            item.score = drop.value;
+          }
+
+          items.push(item);
         }
       });
       return items;
